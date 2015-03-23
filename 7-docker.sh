@@ -1,5 +1,6 @@
+#!/bin/bash
 #
-# 7. docker 1.4+
+# 7. docker
 #
 
 # 7.1. docker
@@ -16,6 +17,9 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/fig
 
 # 7.3. docker-config
-sed -i.dist 's/^other_args=.*$/other_args="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock"/g' /etc/sysconfig/docker
+sed -e 's/^other_args=.*$/other_args="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock"/g' \
+	-i.dist /etc/sysconfig/docker
 service docker start
 chkconfig docker on
+
+# vim:ts=4
