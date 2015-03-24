@@ -1,0 +1,2 @@
+#!/bin/bash
+docker ps -a | awk -F"  +" 'NR>1{print $(NF-1)}'

@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ $# -lt 1 ]; then
+    echo "Usage: `basename $0` [conatiner] [options]"
+    exit 1
+fi
+CONTAINERS=$(docker ps -a | awk -F"  +" 'NR>1{print $(NF-1)}' | grep $1)
+if [ $# -eq 1 ]; then
+    docker exec -it $CONTAINERS /bin/bash --login
+else
+    shift
+    docker exec -it $CONTAINERS $@
+fi
