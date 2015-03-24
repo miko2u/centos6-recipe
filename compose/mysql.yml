@@ -1,0 +1,16 @@
+# MYSQL
+mysql:
+  image: miko2u/mysql
+  hostname: mysql
+  stdin_open: true
+  tty: true
+  ports:
+    - "172.17.42.1:3306:3306"
+  volumes:
+    - /var/lib/mysql:/var/lib/mysql
+    - /var/log/mysql:/var/log/mysql
+  cap_add:
+    - NET_ADMIN
+  environment:
+    - MYSQL_SERVER_ID=3301
+    - MYSQL_BUFFER_POOL_SIZE=128M

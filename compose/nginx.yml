@@ -1,0 +1,13 @@
+# NGINX
+nginx:
+  image: miko2u/nginx
+  stdin_open: true
+  tty: true
+  net: "host"
+  volumes:
+    - /etc/nginx/conf.d:/etc/nginx/conf.d:ro
+    - /etc/pki/tls:/etc/pki/tls:ro
+    - /var/www:/var/www
+    - /var/log/nginx:/var/log/nginx
+  environment:
+    - PS1=[\u@nginx \W]\$\040

@@ -1,0 +1,46 @@
+# vim:ts=2
+
+# REDIS
+redis:
+  image: miko2u/redis
+  hostname: redis
+  stdin_open: true
+  tty: true
+  ports:
+    - "172.17.42.1:6379:6379"
+  volumes:
+    - /var/lib/redis:/var/lib/redis
+    - /var/log/redis:/var/log/redis
+  cap_add:
+    - NET_ADMIN
+
+# MYSQL
+mysql:
+  image: miko2u/mysql
+  hostname: mysql
+  stdin_open: true
+  tty: true
+  ports:
+    - "172.17.42.1:3306:3306"
+  volumes:
+    - /var/lib/mysql:/var/lib/mysql
+    - /var/log/mysql:/var/log/mysql
+  cap_add:
+    - NET_ADMIN
+  environment:
+    - MYSQL_SERVER_ID=3301
+    - MYSQL_BUFFER_POOL_SIZE=192M
+
+# NGINX
+nginx:
+  image: miko2u/nginx
+  stdin_open: true
+  tty: true
+  net: "host"
+  volumes:
+    - /etc/nginx/conf.d:/etc/nginx/conf.d:ro
+    - /etc/pki/tls:/etc/pki/tls:ro
+    - /var/www:/var/www
+    - /var/log/nginx:/var/log/nginx
+  environment:
+    - PS1=[\u@nginx \W]\$\040

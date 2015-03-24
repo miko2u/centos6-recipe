@@ -1,0 +1,13 @@
+# REDIS
+redis:
+  image: miko2u/redis
+  hostname: redis
+  stdin_open: true
+  tty: true
+  ports:
+    - "172.17.42.1:6379:6379"
+  volumes:
+    - /var/lib/redis:/var/lib/redis
+    - /var/log/redis:/var/log/redis
+  cap_add:
+    - NET_ADMIN
