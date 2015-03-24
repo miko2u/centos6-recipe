@@ -43,8 +43,8 @@ fi
 exit 0
 __EOT__
 
-sed -e 's/DAILY/WEEKLY/g' -e 's/daily/weekly' /etc/cron.daily/docker-cron.daily > /etc/cron.weekly/docker-cron.weekly
-sed -e 's/DAILY/MONTHLY/g' -e 's/daily/monthly' /etc/cron.daily/docker-cron.daily > /etc/cron.monthly/docker-cron.monthly
+sed -e 's/DAILY/WEEKLY/g' -e 's/daily/weekly/g' /etc/cron.daily/docker-cron.daily > /etc/cron.weekly/docker-cron.weekly
+sed -e 's/DAILY/MONTHLY/g' -e 's/daily/monthly/g' /etc/cron.daily/docker-cron.daily > /etc/cron.monthly/docker-cron.monthly
 chmod 644 /etc/sysconfig/docker-cron
 chmod 755 /etc/cron.daily/docker-cron.daily /etc/cron.weekly/docker-cron.weekly /etc/cron.monthly/docker-cron.monthly
 
