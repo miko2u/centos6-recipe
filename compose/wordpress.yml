@@ -1,0 +1,12 @@
+# WORDPRESS w/NGINX
+wordpress:
+  image: miko2u/wordpress
+  hostname: wordpress
+  stdin_open: true
+  tty: true
+  ports:
+    - "172.17.42.1:9000:80"
+  volumes:
+    - /var/www/wordpress:/var/www/wordpress
+  cap_add:
+    - NET_ADMIN

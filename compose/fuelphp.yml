@@ -1,0 +1,14 @@
+# FUELPHP w/NGINX
+fuelphp:
+  image: miko2u/fuelphp
+  hostname: fuelphp
+  stdin_open: true
+  tty: true
+  ports:
+    - 8801:80
+  volumes:
+    - ~/fuelphp:/var/www/fuelphp
+  cap_add:
+    - NET_ADMIN
+  environment:
+    - FUEL_ENV=development

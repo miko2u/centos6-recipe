@@ -1,0 +1,9 @@
+# DROPBOX
+dropbox:
+  image: miko2u/dropbox
+  hostname: dropbox
+  stdin_open: true
+  tty: true
+  volumes:
+    - ~/.dropbox-config:/home/dropbox/config
+    - ~/Dropbox:/home/dropbox/Dropbox

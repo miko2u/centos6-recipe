@@ -1,0 +1,12 @@
+# MOVABLETYPE w/NGINX
+movabletype:
+  image: miko2u/movabletype
+  hostname: movabletype
+  stdin_open: true
+  tty: true
+  ports:
+    - "172.17.42.1:8999:80"
+  volumes:
+    - /var/www/movabletype:/var/www/movabletype
+  cap_add:
+    - NET_ADMIN
