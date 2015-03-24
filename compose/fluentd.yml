@@ -1,0 +1,10 @@
+# td-agent
+fluentd:
+  image: miko2u/td-agent
+  hostname: td-agent
+  stdin_open: true
+  tty: true
+  ports:
+    - "24224:24224"
+  volumes:
+    - /var/log:/var/log

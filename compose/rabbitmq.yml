@@ -1,0 +1,13 @@
+# RabbitMQ
+mq:
+  image: miko2u/rabbitmq
+  stdin_open: true
+  tty: true
+  net: "host"
+  volumes:
+    - /var/lib/rabbitmq:/var/lib/rabbitmq
+    - /var/log/rabbitmq:/var/log/rabbitmq
+  cap_add:
+    - NET_ADMIN
+  environment:
+    - PS1=[\u@mq \W]\$\040

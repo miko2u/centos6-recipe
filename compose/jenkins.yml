@@ -1,0 +1,14 @@
+# Jenkins
+jenkins:
+  image: miko2u/jenkins
+  hostname: jenkins
+  stdin_open: true
+  tty: true
+  ports:
+    - "172.17.42.1:8080:8080"
+  volumes:
+    - /var/www/jenkins:/var/lib/jenkins
+    - /var/log/jenkins:/var/log/jenkins
+  environment:
+    - PREFIX=/jenkins
+    - PHP=true
