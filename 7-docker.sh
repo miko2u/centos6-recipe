@@ -22,4 +22,30 @@ sed -e 's/^other_args=.*$/other_args="-H 0.0.0.0:2375 -H unix:///var/run/docker.
 service docker start
 chkconfig docker on
 
+# 7.4. docker-utils
+cat << '__EOT__' > /etc/sysconfig/docker-cron
+# CRON_DAILY=true
+# CRON_WEEKLY=true
+# CRON_mONTHLY=true
+__EOT__
+
+cat << '__EOT__' > /etc/cron.daily/docker-cron.daily 
+#!/bin/sh
+
+CRON_DAILY=true
+[ -f /etc/sysconfig/docker-cron ] && source /etc/sysconfig/docker-cron
+
+if [ $CRON_DAILY == true ]; then
+    for id in $(docker ps -q); do
+        exec $(docker exec $id nice run-parts /etc/cron.daily > /dev/null 2&>1)
+    done
+fi
+exit 0
+__EOT__
+
+sed -e 's/DAILY/WEEKLY/g' -e 's/daily/weekly' /etc/cron.daily/docker-cron.daily > /etc/cron.weekly/docker-cron.weekly
+sed -e 's/DAILY/MONTHLY/g' -e 's/daily/monthly' /etc/cron.daily/docker-cron.daily > /etc/cron.monthly/docker-cron.monthly
+chmod 644 /etc/sysconfig/docker-cron
+chmod 755 /etc/cron.daily/docker-cron.daily /etc/cron.weekly/docker-cron.weekly /etc/cron.monthly/docker-cron.monthly
+
 # vim:ts=4
