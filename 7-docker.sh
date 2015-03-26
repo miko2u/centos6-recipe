@@ -17,7 +17,7 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ln -s /usr/local/bin/docker-compose /usr/bin/fig
 
 # 7.3. docker-config
-sed -e 's/^other_args=.*$/other_args="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock"/g' \
+sed -e 's%^other_args=.*$%other_args="-H 0.0.0.0:2375 -H unix:///var/run/docker.sock"%g' \
 	-i.dist /etc/sysconfig/docker
 service docker start
 chkconfig docker on
@@ -26,7 +26,7 @@ chkconfig docker on
 cat << '__EOT__' > /etc/sysconfig/docker-cron
 # CRON_DAILY=true
 # CRON_WEEKLY=true
-# CRON_mONTHLY=true
+# CRON_MONTHLY=true
 __EOT__
 
 cat << '__EOT__' > /etc/cron.daily/docker-cron.daily 
